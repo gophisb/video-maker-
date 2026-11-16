@@ -45,7 +45,7 @@ $('#makeScenes').onclick=()=>{
 const raw=$('#scriptInput').value.trim();
 if(!raw){say('اكتب النص أو السيناريو أولاً.');$('#scriptInput').focus();return}
 const target=Number($('#targetMinutes').value)*60;
-const remaining=target-total();
+const remaining=Math.floor(target-total());
 if(remaining<=0){say('مدة الشرائح الحالية بلغت المدة المستهدفة أو تجاوزتها. اختر مدة أطول.');return}
 let parts=raw.split(/\n\s*\n/).map(x=>x.trim()).filter(Boolean);
 if(parts.length===1)parts=raw.split(/(?<=[.!؟?])\s+|\n+/).map(x=>x.trim()).filter(Boolean);
@@ -55,7 +55,7 @@ const base=Math.floor(remaining/parts.length),extra=remaining%parts.length;
 const palette=['#182438','#20352f','#352b25','#252b42','#263746'];
 const created=parts.map((text,i)=>({image:null,url:'',text,duration:base+(i<extra?1:0),motion:'none',bg:palette[i%palette.length]}));
 slides.push(...created);selected=slides.length-created.length;render();
-say('أُنشئ '+created.length+' مشهداً نصياً، ووزعت عليها '+target+' ثانية لإكمال مدة المشروع المستهدفة. أضف الصور وعدّل المشاهد كما تريد.');
+say('أُنشئ '+created.length+' مشهداً نصياً، ووزعت عليها '+target+' ثانية ضمن المدة المستهدفة. أضف الصور وعدّل المشاهد كما تريد.');
 };
 $('#exportBtn').onclick=exportVideo;
 $('#helpBtn').onclick=()=>$('#helpDialog').showModal();
