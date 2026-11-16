@@ -44,7 +44,9 @@ async function exportVideo(){if(mode!=='idle'||!slides.length)return;if(total()>
 $('#makeScenes').onclick=()=>{
 const raw=$('#scriptInput').value.trim();
 if(!raw){say('اكتب النص أو السيناريو أولاً.');$('#scriptInput').focus();return}
-const target=Number($('#targetMinutes').value)*60;\nconst remaining=target-total();\nif(remaining<=0){say('مدة الشرائح الحالية بلغت المدة المستهدفة أو تجاوزتها. اختر مدة أطول.');return}
+const target=Number($('#targetMinutes').value)*60;
+const remaining=target-total();
+if(remaining<=0){say('مدة الشرائح الحالية بلغت المدة المستهدفة أو تجاوزتها. اختر مدة أطول.');return}
 let parts=raw.split(/\n\s*\n/).map(x=>x.trim()).filter(Boolean);
 if(parts.length===1)parts=raw.split(/(?<=[.!؟?])\s+|\n+/).map(x=>x.trim()).filter(Boolean);
 if(parts.length===1&&parts[0].length>220){const words=parts[0].split(/\s+/);parts=[];let line='';for(const word of words){if((line+' '+word).trim().length>180&&line){parts.push(line);line=word}else line=(line+' '+word).trim()}if(line)parts.push(line)}
