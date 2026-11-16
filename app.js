@@ -55,7 +55,7 @@ const base=Math.floor(remaining/parts.length),extra=remaining%parts.length;
 const palette=['#182438','#20352f','#352b25','#252b42','#263746'];
 const created=parts.map((text,i)=>({image:null,url:'',text,duration:base+(i<extra?1:0),motion:'none',bg:palette[i%palette.length]}));
 slides.push(...created);selected=slides.length-created.length;render();
-say('أُنشئ '+created.length+' مشهداً نصياً، ووزعت عليها '+target+' ثانية ضمن المدة المستهدفة. أضف الصور وعدّل المشاهد كما تريد.');
+say('أُنشئ '+created.length+' مشهداً نصياً، ووزعت عليها '+remaining+' ثانية لإكمال المدة المستهدفة. أضف الصور وعدّل المشاهد كما تريد.');
 };
 $('#exportBtn').onclick=exportVideo;
 $('#helpBtn').onclick=()=>$('#helpDialog').showModal();
