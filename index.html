@@ -27,7 +27,7 @@
 <section class="panel editor-panel" id="editorPanel"><div class="panel-head"><div><h2>تحرير الشريحة</h2><p id="selectedLabel">اختر شريحة لتعديلها</p></div><span class="number">02</span></div>
 <div id="editorEmpty" class="editor-empty">حدد شريحة من الشريط لفتح أدواتها.</div>
 <div id="editorFields" hidden><label class="field"><span>النص الظاهر على الفيديو</span><textarea id="slideText" rows="3" placeholder="اكتب عبارة جميلة..."></textarea></label>
-<div class="field-grid"><label class="field"><span>مدة الشريحة <output id="durationOut">3 ث</output></span><input id="duration" type="range" min="1" max="12" step=".5" value="3"></label><label class="field"><span>حركة الصورة</span><select id="motion"><option value="zoomIn">تقريب تدريجي</option><option value="zoomOut">إبعاد تدريجي</option><option value="panLeft">تحريك لليسار</option><option value="panRight">تحريك لليمين</option><option value="none">بلا حركة</option></select></label></div>
+<div class="field-grid"><label class="field"><span>مدة الشريحة <output id="durationOut">3 ث</output></span><input id="duration" type="range" min="1" max="900" step="1" value="3"></label><label class="field"><span>حركة الصورة</span><select id="motion"><option value="zoomIn">تقريب تدريجي</option><option value="zoomOut">إبعاد تدريجي</option><option value="panLeft">تحريك لليسار</option><option value="panRight">تحريك لليمين</option><option value="none">بلا حركة</option></select></label></div>
 <label class="field" id="bgField"><span>لون خلفية الشريحة النصية</span><input id="bgColor" type="color" value="#182438"></label>
 <div class="edit-actions"><button id="moveLeft" class="btn btn-quiet">← تقديم</button><button id="moveRight" class="btn btn-quiet">تأخير →</button><button id="deleteSlide" class="btn btn-danger">حذف</button></div></div>
 </section>
@@ -36,6 +36,13 @@
 <section class="panel timeline-panel"><div class="panel-head"><div><h2>قصة الفيديو</h2><p>أضف الشرائح واسحبها لترتيبها</p></div><span id="slideCount" class="count">0 شرائح</span></div>
 <div id="timeline" class="timeline"><div class="timeline-empty">لم تضف أي شرائح بعد. ابدأ بإضافة صورك أو شريحة نصية.</div></div>
 <div class="add-actions"><button id="addImages" class="btn btn-primary"><span>＋</span> إضافة صور</button><button id="addText" class="btn btn-outline"><span>Ｔ</span> شريحة نصية</button><input id="imageFiles" type="file" accept="image/*" multiple hidden></div>
+</section>
+<section class="panel planner-panel">
+<div class="panel-head"><div><h2>مخطط المشاهد السريع</h2><p>حوّل نصك إلى شرائح محلياً، دون API أو أدوات إضافية</p></div><span class="number">03</span></div>
+<label class="field"><span>النص أو السيناريو</span><textarea id="scriptInput" rows="4" placeholder="اكتب كل فقرة في سطر مستقل، أو الصق سيناريوك هنا..."></textarea></label>
+<div class="field-grid"><label class="field"><span>المدة المستهدفة</span><select id="targetMinutes"><option value="1">دقيقة واحدة</option><option value="2">دقيقتان</option><option value="3">3 دقائق</option><option value="5" selected>5 دقائق</option><option value="7">7 دقائق</option><option value="10">10 دقائق</option><option value="12">12 دقيقة</option><option value="15">15 دقيقة</option></select></label><div class="field"><span>طريقة التقسيم</span><div class="editor-empty">تقسيم محلي حسب الفقرات والجمل</div></div></div>
+<div class="add-actions"><button id="makeScenes" class="btn btn-primary">＋ إنشاء مشاهد نصية</button></div>
+<p class="message">هذه أداة تنظيم محلية وليست توليداً بالذكاء الاصطناعي. يمكنك إضافة الصور والصوت بعد إنشاء المشاهد.</p>
 </section>
 <section class="export-panel"><div class="export-copy"><span class="export-icon">↗</span><div><b>جاهز لإخراج عملك؟</b><small>يُنشأ الفيديو على جهازك دون رفع ملفاتك.</small></div></div><div class="export-actions"><button id="exportBtn" class="btn btn-export" disabled>تصدير الفيديو <span>↗</span></button></div><div id="progressWrap" class="progress-wrap" hidden><div class="progress-meta"><span id="progressText">جارٍ تجهيز الفيديو…</span><b id="progressPercent">0%</b></div><div class="progress-track"><i id="progressBar"></i></div></div><p id="message" class="message" role="status" aria-live="polite">أضف شريحة واحدة على الأقل للبدء.</p></section>
 <section id="resultPanel" class="panel result-panel" hidden><div class="panel-head"><div><h2>فيديوك جاهز</h2><p id="resultInfo">اكتمل التصدير</p></div><span class="result-check">✓</span></div><video id="resultVideo" controls playsinline></video><a id="downloadBtn" class="btn btn-primary download-btn" download="midad-video.webm">تنزيل الفيديو ↓</a></section>
